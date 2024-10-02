@@ -1,0 +1,18 @@
+networks:
+  teidesat-network:
+    external: true
+
+services:
+  ogs-server:
+    image: ogs-server:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ogs-server
+    hostname: ogs-server
+    privileged: true
+    networks:
+      - teidesat-network
+    ports:
+      - "5000:5000"
+    command: flask run --host=ogs-server --port=5000
